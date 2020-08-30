@@ -2,6 +2,36 @@
 
 ## Approach: Using array and two pointers
 ```C#
+public bool IsPalindrome(ListNode head)
+{
+    List<int> values = new List<int>();
+
+    ListNode current = head;
+    while (current != null)
+    {
+        values.Add(current.val);
+        current = current.next;
+    }
+
+    int front = 0,
+        back = values.Count - 1;
+    while (front < back)
+    {
+        if (values[front] != values[back])
+            return false;
+        front++;
+        back--;
+    }
+
+    return true;
+}
+```
+#### Complexity Analysis
+* Time Complexity: O(n)
+* Space Complexity: O(n)
+
+## Approach: Recursive 
+```C#
 private ListNode headPointer;
 
 public bool IsPalindrome(ListNode head)
@@ -22,13 +52,6 @@ private bool RecursivelyCheckPalindrome(ListNode current)
     }
     return true;
 }
-```
-#### Complexity Analysis
-* Time Complexity: O(n)
-* Space Complexity: O(n)
-
-## Approach: Using array and two pointers
-```C#
 ```
 #### Complexity Analysis
 * Time Complexity: O(n)
