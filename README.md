@@ -2,27 +2,24 @@
 
 ## Approach: Using array and two pointers
 ```C#
-public static bool IsPalindrome(ListNode head)
+private ListNode headPointer;
+
+public bool IsPalindrome(ListNode head)
 {
-    List<int> values = new List<int>();
+    headPointer = head;
+    return RecursivelyCheckPalindrome(head);
+}
 
-    ListNode current = head;
-    while(current != null)
+private bool RecursivelyCheckPalindrome(ListNode current)
+{
+    if(current != null)
     {
-        values.Add(current.val);
-        current = current.next;
-    }
-
-    int front = 0,
-        back = values.Count - 1;
-    while(front < back)
-    {
-        if (values[front] != values[back])
+        if (!RecursivelyCheckPalindrome(current.next))
             return false;
-        front++;
-        back--;
+        if (current.val != headPointer.val)
+            return false;
+        headPointer = headPointer.next;
     }
-            
     return true;
 }
 ```
@@ -30,9 +27,16 @@ public static bool IsPalindrome(ListNode head)
 * Time Complexity: O(n)
 * Space Complexity: O(n)
 
+## Approach: Using array and two pointers
+```C#
+```
+#### Complexity Analysis
+* Time Complexity: O(n)
+* Space Complexity: O(n), it creates n stack frame of O(1) space, hence O(n). 
+
 ## Approach: Reverse the second half in-place
 ```C#
-public static bool IsPalindrome(ListNode head)
+public bool IsPalindrome(ListNode head)
 {
     if (head == null || head.next == null) return true;
 
@@ -60,7 +64,7 @@ public static bool IsPalindrome(ListNode head)
     return true;
 }
 
-private static ListNode ReverseList(ListNode head)
+private ListNode ReverseList(ListNode head)
 {
     if (head == null) return null;
     ListNode revList = null;
