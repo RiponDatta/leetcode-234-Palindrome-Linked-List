@@ -1,6 +1,6 @@
 # leetcode 234 - Palindrome Linked List
 
-## Approach: Reverse the second half in-place
+## Approach: Using array and two pointers
 ```C#
 public static bool IsPalindrome(ListNode head)
 {
